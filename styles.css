@@ -127,11 +127,11 @@ body > header h1 {
 
 /* Make the mobile menu control easy to tap and visibly indicate its state. */
 .menu-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
   min-height: 44px;
-  padding: var(--space-1) var(--space-3);
+  padding: 0;
   border: 1px solid rgb(29 41 37 / 18%);
   border-radius: 0.65rem;
   background: var(--color-surface);
@@ -149,6 +149,47 @@ body > header h1 {
 .menu-toggle[aria-expanded="true"] {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+.menu-toggle-icon,
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 160ms ease;
+}
+
+.menu-toggle-icon {
+  position: relative;
+}
+
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+  position: absolute;
+  content: "";
+}
+
+.menu-toggle-icon::before {
+  transform: translateY(-6px);
+}
+
+.menu-toggle-icon::after {
+  transform: translateY(6px);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon {
+  background: transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon::before {
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon::after {
+  transform: rotate(-45deg);
 }
 
 /* Hide the mobile navigation until its button opens the menu. */
