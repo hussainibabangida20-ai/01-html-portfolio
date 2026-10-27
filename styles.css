@@ -9,7 +9,7 @@
   --color-accent-hover: #0d503e;
   --color-header: rgb(245 247 244 / 95%);
   --color-border: rgb(29 41 37 / 12%);
-  --color-control-border: rgb(29 41 37 / 18%);
+  --color-control-border: #68766f;
   --color-control-hover: #e8f2ed;
   --color-skill-bg: #e8f2ed;
   --color-skill-text: #145941;
@@ -37,7 +37,7 @@
     --color-accent-hover: #a0ebcb;
     --color-header: rgb(17 24 21 / 95%);
     --color-border: rgb(242 247 244 / 16%);
-    --color-control-border: rgb(242 247 244 / 28%);
+    --color-control-border: rgb(242 247 244 / 58%);
     --color-control-hover: #263b32;
     --color-skill-bg: #263b32;
     --color-skill-text: #c4f4df;
@@ -486,6 +486,11 @@ body > footer {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  #projects article:hover,
+  #projects article:focus-within {
+    transform: none;
   }
 
   *,
