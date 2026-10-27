@@ -8,10 +8,21 @@
       content="The personal portfolio of Your Name, a developer building thoughtful web experiences."
     >
     <title>Your Name | Developer Portfolio</title>
+    <meta property="og:title" content="Your Name | Developer Portfolio">
+    <meta
+      property="og:description"
+      content="The personal portfolio of Your Name, a developer building thoughtful web experiences."
+    >
+    <meta property="og:type" content="website">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%2316785d%22/%3E%3Cpath d=%22m25 20-12 12 12 12m14-24 12 12-12 12%22 fill=%22none%22 stroke=%22white%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%225%22/%3E%3C/svg%3E"
+    >
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header>
       <h1>Your Name</h1>
       <button
@@ -33,7 +44,7 @@
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section id="about">
         <h2>About</h2>
         <p>
@@ -41,7 +52,22 @@
           experiences. I’m currently learning, building projects, and looking
           for opportunities to grow.
         </p>
-        <img src="profile-placeholder.jpg" alt="Portrait of Your Name">
+        <svg
+          class="profile-illustration"
+          viewBox="0 0 280 280"
+          width="280"
+          height="280"
+          role="img"
+          aria-labelledby="profile-illustration-title"
+        >
+          <title id="profile-illustration-title">Profile illustration placeholder</title>
+          <rect width="280" height="280" rx="16" fill="var(--color-image-bg)"></rect>
+          <circle cx="140" cy="104" r="48" fill="var(--color-accent)"></circle>
+          <path
+            d="M48 280c8-62 42-96 92-96s84 34 92 96"
+            fill="var(--color-accent)"
+          ></path>
+        </svg>
       </section>
 
       <section id="skills">
@@ -63,17 +89,17 @@
         <article>
           <h3>Project One</h3>
           <p>A short description of this project and what it does.</p>
-          <a href="https://github.com/your-username/project-one">View project</a>
+          <a href="https://github.com/your-username/project-one" aria-label="View Project One on GitHub">View project</a>
         </article>
         <article>
           <h3>Project Two</h3>
           <p>A short description of this project and what it does.</p>
-          <a href="https://github.com/your-username/project-two">View project</a>
+          <a href="https://github.com/your-username/project-two" aria-label="View Project Two on GitHub">View project</a>
         </article>
         <article>
           <h3>Project Three</h3>
           <p>A short description of this project and what it does.</p>
-          <a href="https://github.com/your-username/project-three">View project</a>
+          <a href="https://github.com/your-username/project-three" aria-label="View Project Three on GitHub">View project</a>
         </article>
       </section>
 

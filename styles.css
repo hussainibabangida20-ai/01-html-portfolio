@@ -1,11 +1,22 @@
 /* Define the shared color palette, spacing scale, shape, and content width. */
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --color-bg: #f5f7f4;
   --color-surface: #ffffff;
   --color-text: #1d2925;
   --color-muted: #63716b;
   --color-accent: #16785d;
+  --color-accent-hover: #0d503e;
+  --color-header: rgb(245 247 244 / 95%);
+  --color-border: rgb(29 41 37 / 12%);
+  --color-control-border: rgb(29 41 37 / 18%);
+  --color-control-hover: #e8f2ed;
+  --color-skill-bg: #e8f2ed;
+  --color-skill-text: #145941;
+  --color-skill-border: rgb(22 120 93 / 18%);
+  --color-image-bg: #e4ebe6;
+  --color-card-shadow: rgb(29 41 37 / 5%);
+  --color-card-shadow-hover: rgb(29 41 37 / 12%);
   --space-1: 0.375rem;
   --space-2: 0.75rem;
   --space-3: 1rem;
@@ -14,6 +25,27 @@
   --space-6: 4rem;
   --radius: 1rem;
   --max-width: 1100px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111815;
+    --color-surface: #1b2420;
+    --color-text: #f2f7f4;
+    --color-muted: #bdc9c2;
+    --color-accent: #70d6b1;
+    --color-accent-hover: #a0ebcb;
+    --color-header: rgb(17 24 21 / 95%);
+    --color-border: rgb(242 247 244 / 16%);
+    --color-control-border: rgb(242 247 244 / 28%);
+    --color-control-hover: #263b32;
+    --color-skill-bg: #263b32;
+    --color-skill-text: #c4f4df;
+    --color-skill-border: rgb(112 214 177 / 35%);
+    --color-image-bg: #263b32;
+    --color-card-shadow: rgb(0 0 0 / 20%);
+    --color-card-shadow-hover: rgb(0 0 0 / 40%);
+  }
 }
 
 /* Normalize sizing and browser defaults so layouts remain predictable. */
@@ -96,7 +128,7 @@ a {
 }
 
 a:hover {
-  color: #0d503e;
+  color: var(--color-accent-hover);
 }
 
 a:focus-visible,
@@ -104,6 +136,22 @@ button:focus-visible {
   border-radius: 0.2rem;
   outline: 3px solid var(--color-accent);
   outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 20;
+  top: var(--space-2);
+  left: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  transform: translateY(calc(-100% - var(--space-2)));
+  border-radius: 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* Keep the brand and menu button aligned in the compact sticky header. */
@@ -116,8 +164,8 @@ body > header {
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-3) max(var(--space-3), calc((100% - var(--max-width)) / 2 + var(--space-3)));
-  border-bottom: 1px solid rgb(29 41 37 / 8%);
-  background: rgb(245 247 244 / 95%);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-header);
   backdrop-filter: blur(14px);
 }
 
@@ -132,7 +180,7 @@ body > header h1 {
   width: 44px;
   min-height: 44px;
   padding: 0;
-  border: 1px solid rgb(29 41 37 / 18%);
+  border: 1px solid var(--color-control-border);
   border-radius: 0.65rem;
   background: var(--color-surface);
   color: var(--color-text);
@@ -143,7 +191,7 @@ body > header h1 {
 }
 
 .menu-toggle:hover {
-  background: #e8f2ed;
+  background: var(--color-control-hover);
 }
 
 .menu-toggle[aria-expanded="true"] {
@@ -222,7 +270,7 @@ nav a {
 }
 
 nav a:hover {
-  background: #e8f2ed;
+  background: var(--color-control-hover);
   color: var(--color-accent);
 }
 
@@ -261,12 +309,12 @@ main > section:last-child {
   font-size: 1.05rem;
 }
 
-#about img {
+#about .profile-illustration {
   width: 100%;
   max-width: 280px;
-  border: 1px solid rgb(29 41 37 / 10%);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  background: #e4ebe6;
+  background: var(--color-image-bg);
 }
 
 /* Display skills as flexible pill badges that wrap on narrow screens. */
@@ -280,10 +328,10 @@ main > section:last-child {
 
 #skills li {
   padding: var(--space-1) var(--space-3);
-  border: 1px solid rgb(22 120 93 / 18%);
+  border: 1px solid var(--color-skill-border);
   border-radius: 999px;
-  background: #e8f2ed;
-  color: #145941;
+  background: var(--color-skill-bg);
+  color: var(--color-skill-text);
   font-size: 0.95rem;
   font-weight: 600;
 }
@@ -308,17 +356,17 @@ main > section:last-child {
   align-items: flex-start;
   gap: var(--space-2);
   padding: var(--space-4);
-  border: 1px solid rgb(29 41 37 / 8%);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-surface);
-  box-shadow: 0 6px 18px rgb(29 41 37 / 5%);
+  box-shadow: 0 6px 18px var(--color-card-shadow);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 #projects article:hover,
 #projects article:focus-within {
   transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgb(29 41 37 / 12%);
+  box-shadow: 0 16px 32px var(--color-card-shadow-hover);
 }
 
 #projects article p {
@@ -346,7 +394,7 @@ main > section:last-child {
 /* Separate the footer from the content while keeping its text subdued. */
 body > footer {
   padding-block: var(--space-4);
-  border-top: 1px solid rgb(29 41 37 / 12%);
+  border-top: 1px solid var(--color-border);
   color: var(--color-muted);
   font-size: 0.9rem;
 }
@@ -444,6 +492,6 @@ body > footer {
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+    transition: none !important;
   }
 }
