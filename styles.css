@@ -309,7 +309,7 @@ main > section:last-child {
   font-size: 1.05rem;
 }
 
-#about .profile-illustration {
+#about .profile-photo {
   width: 100%;
   max-width: 280px;
   border: 1px solid var(--color-border);
