@@ -1,0 +1,408 @@
+/* Define the shared color palette, spacing scale, shape, and content width. */
+:root {
+  color-scheme: light;
+  --color-bg: #f5f7f4;
+  --color-surface: #ffffff;
+  --color-text: #1d2925;
+  --color-muted: #63716b;
+  --color-accent: #16785d;
+  --space-1: 0.375rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+  --radius: 1rem;
+  --max-width: 1100px;
+}
+
+/* Normalize sizing and browser defaults so layouts remain predictable. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Set the mobile-first page background, readable type, and system font stack. */
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keep images and other media within their containers at every viewport size. */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Allow long words and URLs to wrap instead of causing horizontal scrolling. */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  overflow-wrap: anywhere;
+}
+
+/* Use a fluid heading scale with compact line-height on small screens. */
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+}
+
+h2 {
+  margin-bottom: var(--space-4);
+  font-size: clamp(1.75rem, 8vw, 2.5rem);
+}
+
+h3 {
+  margin-bottom: var(--space-2);
+  font-size: clamp(1.2rem, 5vw, 1.5rem);
+}
+
+/* Give links clear color, hover, and keyboard-focus feedback. */
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+a:hover {
+  color: #0d503e;
+}
+
+a:focus-visible,
+button:focus-visible {
+  border-radius: 0.2rem;
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Keep the brand and menu button aligned in the compact sticky header. */
+body > header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) max(var(--space-3), calc((100% - var(--max-width)) / 2 + var(--space-3)));
+  border-bottom: 1px solid rgb(29 41 37 / 8%);
+  background: rgb(245 247 244 / 95%);
+  backdrop-filter: blur(14px);
+}
+
+body > header h1 {
+  min-width: 0;
+}
+
+/* Make the mobile menu control easy to tap and visibly indicate its state. */
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid rgb(29 41 37 / 18%);
+  border-radius: 0.65rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background: #e8f2ed;
+}
+
+.menu-toggle[aria-expanded="true"] {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Hide the mobile navigation until its button opens the menu. */
+body > header nav {
+  display: none;
+  grid-column: 1 / -1;
+}
+
+body > header.menu-open nav {
+  display: block;
+}
+
+/* Stack mobile navigation links with enough room for touch interaction. */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) 0 0;
+  list-style: none;
+}
+
+nav a {
+  display: block;
+  padding: var(--space-2);
+  border-radius: 0.5rem;
+  color: var(--color-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background: #e8f2ed;
+  color: var(--color-accent);
+}
+
+/* Center the main content and footer with small-screen side padding. */
+main,
+body > footer {
+  width: min(100% - 2 * var(--space-3), var(--max-width));
+  margin-inline: auto;
+}
+
+main {
+  padding-block: var(--space-5);
+}
+
+/* Space sections consistently and offset anchor targets below the sticky bar. */
+main > section {
+  margin-bottom: var(--space-5);
+  scroll-margin-top: 6rem;
+}
+
+main > section:last-child {
+  margin-bottom: 0;
+}
+
+/* Stack the introduction on mobile and constrain the profile image width. */
+#about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+}
+
+#about p {
+  max-width: 62ch;
+  color: var(--color-muted);
+  font-size: 1.05rem;
+}
+
+#about img {
+  width: 100%;
+  max-width: 280px;
+  border: 1px solid rgb(29 41 37 / 10%);
+  border-radius: var(--radius);
+  background: #e4ebe6;
+}
+
+/* Display skills as flexible pill badges that wrap on narrow screens. */
+#skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+#skills li {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid rgb(22 120 93 / 18%);
+  border-radius: 999px;
+  background: #e8f2ed;
+  color: #145941;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Use a single-column mobile project grid that grows at wider breakpoints. */
+#projects {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+#projects h2 {
+  margin-bottom: 0;
+}
+
+/* Style project cards and animate a small lift on hover or keyboard focus. */
+#projects article {
+  display: flex;
+  min-width: 0;
+  min-height: 190px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid rgb(29 41 37 / 8%);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: 0 6px 18px rgb(29 41 37 / 5%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+#projects article:hover,
+#projects article:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgb(29 41 37 / 12%);
+}
+
+#projects article p {
+  color: var(--color-muted);
+}
+
+#projects article a {
+  margin-top: auto;
+  font-weight: 650;
+}
+
+/* Keep contact and social links in a readable, flexible list. */
+#contact > p {
+  margin-bottom: var(--space-2);
+}
+
+#contact ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+/* Separate the footer from the content while keeping its text subdued. */
+body > footer {
+  padding-block: var(--space-4);
+  border-top: 1px solid rgb(29 41 37 / 12%);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* Expand the header and content columns for tablet-sized screens. */
+@media (min-width: 768px) {
+  body > header {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  body > header nav,
+  body > header.menu-open nav {
+    display: block;
+    min-width: 0;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-1) var(--space-2);
+    padding: 0;
+  }
+
+  nav a {
+    padding: var(--space-2);
+    font-size: 0.95rem;
+  }
+
+  main {
+    padding-block: var(--space-6);
+  }
+
+  main > section {
+    margin-bottom: var(--space-6);
+    scroll-margin-top: 7rem;
+  }
+
+  #about {
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 260px);
+    gap: var(--space-4) var(--space-5);
+  }
+
+  #about h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  #projects {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-4);
+  }
+
+  #projects h2 {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Add generous side spacing and a wider portrait column on desktop screens. */
+@media (min-width: 1024px) {
+  body > header {
+    padding-block: var(--space-3);
+  }
+
+  nav ul {
+    gap: var(--space-2) var(--space-3);
+  }
+
+  main {
+    padding-block: calc(var(--space-6) + var(--space-2));
+  }
+
+  #about {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  }
+
+  #about p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Respect visitors who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
